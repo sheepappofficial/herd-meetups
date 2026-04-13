@@ -14,7 +14,176 @@ export type Database = {
   }
   public: {
     Tables: {
-      [_ in never]: never
+      cafes: {
+        Row: {
+          created_at: string
+          id: string
+          image: string | null
+          location: string | null
+          name: string
+          rating: number | null
+        }
+        Insert: {
+          created_at?: string
+          id?: string
+          image?: string | null
+          location?: string | null
+          name: string
+          rating?: number | null
+        }
+        Update: {
+          created_at?: string
+          id?: string
+          image?: string | null
+          location?: string | null
+          name?: string
+          rating?: number | null
+        }
+        Relationships: []
+      }
+      matches: {
+        Row: {
+          cafe_id: string | null
+          created_at: string
+          id: string
+          match_score: number | null
+          sheep_code: string | null
+          status: string
+          user1_id: string
+          user2_id: string
+        }
+        Insert: {
+          cafe_id?: string | null
+          created_at?: string
+          id?: string
+          match_score?: number | null
+          sheep_code?: string | null
+          status?: string
+          user1_id: string
+          user2_id: string
+        }
+        Update: {
+          cafe_id?: string | null
+          created_at?: string
+          id?: string
+          match_score?: number | null
+          sheep_code?: string | null
+          status?: string
+          user1_id?: string
+          user2_id?: string
+        }
+        Relationships: []
+      }
+      messages: {
+        Row: {
+          content: string
+          created_at: string
+          id: string
+          match_id: string
+          sender_id: string
+        }
+        Insert: {
+          content: string
+          created_at?: string
+          id?: string
+          match_id: string
+          sender_id: string
+        }
+        Update: {
+          content?: string
+          created_at?: string
+          id?: string
+          match_id?: string
+          sender_id?: string
+        }
+        Relationships: [
+          {
+            foreignKeyName: "messages_match_id_fkey"
+            columns: ["match_id"]
+            isOneToOne: false
+            referencedRelation: "matches"
+            referencedColumns: ["id"]
+          },
+        ]
+      }
+      profiles: {
+        Row: {
+          age: number | null
+          bio: string | null
+          created_at: string
+          gender: string | null
+          id: string
+          interested_in: string | null
+          interests: string[] | null
+          name: string | null
+          onboarding_completed: boolean
+          phone: string | null
+          preferred_days: string[] | null
+          preferred_times: string[] | null
+          profile_image: string | null
+          updated_at: string
+          user_id: string
+        }
+        Insert: {
+          age?: number | null
+          bio?: string | null
+          created_at?: string
+          gender?: string | null
+          id?: string
+          interested_in?: string | null
+          interests?: string[] | null
+          name?: string | null
+          onboarding_completed?: boolean
+          phone?: string | null
+          preferred_days?: string[] | null
+          preferred_times?: string[] | null
+          profile_image?: string | null
+          updated_at?: string
+          user_id: string
+        }
+        Update: {
+          age?: number | null
+          bio?: string | null
+          created_at?: string
+          gender?: string | null
+          id?: string
+          interested_in?: string | null
+          interests?: string[] | null
+          name?: string | null
+          onboarding_completed?: boolean
+          phone?: string | null
+          preferred_days?: string[] | null
+          preferred_times?: string[] | null
+          profile_image?: string | null
+          updated_at?: string
+          user_id?: string
+        }
+        Relationships: []
+      }
+      swipes: {
+        Row: {
+          created_at: string
+          direction: string
+          id: string
+          swiped_id: string
+          swiper_id: string
+        }
+        Insert: {
+          created_at?: string
+          direction: string
+          id?: string
+          swiped_id: string
+          swiper_id: string
+        }
+        Update: {
+          created_at?: string
+          direction?: string
+          id?: string
+          swiped_id?: string
+          swiper_id?: string
+        }
+        Relationships: []
+      }
     }
     Views: {
       [_ in never]: never
