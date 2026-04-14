@@ -9,6 +9,9 @@ import { useAuthStore } from '@/stores/authStore';
 import AuthPage from './pages/AuthPage';
 import OnboardingPage from './pages/OnboardingPage';
 import SwipePage from './pages/SwipePage';
+import MatchesPage from './pages/MatchesPage';
+import ChatsPage from './pages/ChatsPage';
+import ProfilePage from './pages/ProfilePage';
 import CafePage from './pages/CafePage';
 import ChatPage from './pages/ChatPage';
 import NotFound from './pages/NotFound';
@@ -57,6 +60,9 @@ const AuthGate = () => {
   return (
     <Routes>
       <Route path="/" element={<SwipePage />} />
+      <Route path="/matches" element={<MatchesPage />} />
+      <Route path="/chats" element={<ChatsPage />} />
+      <Route path="/profile" element={<ProfilePage />} />
       <Route path="/cafes" element={<CafePage />} />
       <Route path="/chat" element={<ChatPage />} />
       <Route path="*" element={<Navigate to="/" replace />} />

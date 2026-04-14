@@ -7,6 +7,7 @@ import SwipeCard from '@/components/SwipeCard';
 import MatchModal from '@/components/MatchModal';
 import { motion, AnimatePresence } from 'framer-motion';
 import sheepLogo from '@/assets/sheep-logo.png';
+import BottomNav from '@/components/BottomNav';
 
 const SwipePage = () => {
   const { user, profile } = useAuthStore();
@@ -106,14 +107,12 @@ const SwipePage = () => {
   const currentProfile = sortedProfiles[currentIndex];
 
   return (
-    <div className="flex flex-col min-h-screen bg-background safe-top">
+    <div className="flex flex-col min-h-screen bg-background safe-top pb-20">
       {/* Header */}
       <div className="flex items-center justify-between px-5 py-4">
         <img src={sheepLogo} alt="Sheep" className="w-10 h-10" />
         <h1 className="text-lg font-bold text-foreground">Sheep</h1>
-        <button onClick={() => useAuthStore.getState().signOut()} className="text-sm text-muted-foreground">
-          Logout
-        </button>
+        <div className="w-10" />
       </div>
 
       {/* Cards */}
@@ -144,6 +143,8 @@ const SwipePage = () => {
         matchScore={matchedProfile ? getMatchScore(matchedProfile.interests || []) : 0}
         totalInterests={profile?.interests?.length || 0}
       />
+
+      <BottomNav />
     </div>
   );
 };
