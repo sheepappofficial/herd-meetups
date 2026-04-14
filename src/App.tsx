@@ -1,6 +1,6 @@
 import { useEffect } from 'react';
 import { QueryClient, QueryClientProvider } from '@tanstack/react-query';
-import { BrowserRouter, Route, Routes, Navigate } from 'react-router-dom';
+import { BrowserRouter, Route, Routes, Navigate, useLocation } from 'react-router-dom';
 import { Toaster } from '@/components/ui/toaster';
 import { TooltipProvider } from '@/components/ui/tooltip';
 import { supabase } from '@/integrations/supabase/client';
@@ -9,9 +9,12 @@ import { useAuthStore } from '@/stores/authStore';
 import AuthPage from './pages/AuthPage';
 import OnboardingPage from './pages/OnboardingPage';
 import SwipePage from './pages/SwipePage';
+import MatchesPage from './pages/MatchesPage';
 import CafePage from './pages/CafePage';
 import ChatPage from './pages/ChatPage';
+import ProfilePage from './pages/ProfilePage';
 import NotFound from './pages/NotFound';
+import BottomNav from './components/BottomNav';
 
 const queryClient = new QueryClient();
 
@@ -54,13 +57,22 @@ const AuthGate = () => {
   if (!user) return <AuthPage />;
   if (!profile?.onboarding_completed) return <OnboardingPage />;
 
+  const location = useLocation();
+  const showNav = ['/', '/matches', '/chats', '/profile'].includes(location.pathname);
+
   return (
-    <Routes>
-      <Route path="/" element={<SwipePage />} />
-      <Route path="/cafes" element={<CafePage />} />
-      <Route path="/chat" element={<ChatPage />} />
-      <Route path="*" element={<Navigate to="/" replace />} />
-    </Routes>
+    <>
+      <Routes>
+        <Route path="/" element={<SwipePage />} />
+        <Route path="/matches" element={<MatchesPage />} />
+        <Route path="/chats" element={<CafePage />} />
+        <Route path="/profile" element={<ProfilePage />} />
+        <Route path="/cafes" element={<CafePage />} />
+        <Route path="/chat" element={<ChatPage />} />
+        <Route path="*" element={<Navigate to="/" replace />} />
+      </Routes>
+      {showNav && <BottomNav />}
+    </>
   );
 };
 

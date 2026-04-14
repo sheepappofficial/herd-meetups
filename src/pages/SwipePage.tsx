@@ -106,14 +106,11 @@ const SwipePage = () => {
   const currentProfile = sortedProfiles[currentIndex];
 
   return (
-    <div className="flex flex-col min-h-screen bg-background safe-top">
+    <div className="flex flex-col min-h-screen bg-background safe-top pb-20">
       {/* Header */}
-      <div className="flex items-center justify-between px-5 py-4">
-        <img src={sheepLogo} alt="Sheep" className="w-10 h-10" />
-        <h1 className="text-lg font-bold text-foreground">Sheep</h1>
-        <button onClick={() => useAuthStore.getState().signOut()} className="text-sm text-muted-foreground">
-          Logout
-        </button>
+      <div className="flex items-center justify-center gap-2 px-5 py-4">
+        <img src={sheepLogo} alt="Sheep" className="w-8 h-8" />
+        <h1 className="text-lg font-bold text-foreground">Discover</h1>
       </div>
 
       {/* Cards */}
